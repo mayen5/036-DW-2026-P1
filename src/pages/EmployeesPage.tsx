@@ -1,6 +1,6 @@
 // src/pages/EmployeesPage.tsx
 import { useState, useEffect, useCallback } from 'react';
-import type { Employee, Department, EmployeeStatus, EmployeeRole } from '../types';
+import type { Employee, DepartmentName, EmployeeStatus, EmployeeRole } from '../types';
 import { mockEmployees } from '../utils/mockData';
 import EmployeeCard from '../components/EmployeeCard';
 import StatsBadge from '../components/StatsBadge';
@@ -13,7 +13,7 @@ function EmployeesPage() {
 
   // Estado de los filtros
   const [search, setSearch] = useState<string>('');
-  const [selectedDepartment, setSelectedDepartment] = useState<Department | ''>('');
+  const [selectedDepartment, setSelectedDepartment] = useState<DepartmentName | ''>('');
   const [selectedStatus, setSelectedStatus] = useState<EmployeeStatus | ''>('');
 
   // Añade este estado al inicio del componente:
@@ -21,7 +21,7 @@ function EmployeesPage() {
   const [newName, setNewName] = useState<string>('');
   const [newEmail, setNewEmail] = useState<string>('');
   const [newPosition, setNewPosition] = useState<string>('');
-  const [newDepartment, setNewDepartment] = useState<Department>('Tecnología');
+  const [newDepartment, setNewDepartment] = useState<DepartmentName>('Tecnología');
   const [newSalary, setNewSalary] = useState<string>('');
   const [newHireDate, setNewHireDate] = useState<string>('');
   const [newStatus, setNewStatus] = useState<EmployeeStatus>('active');
@@ -99,7 +99,7 @@ function EmployeesPage() {
     setShowForm(false);
   }, [newName, newEmail, newPosition, newDepartment, newSalary, newHireDate, newStatus, newRole, newPhone, newAvatarUrl]);
 
-  const departments: Department[] = ['Tecnología', 'Recursos Humanos', 'Finanzas', 'Operaciones', 'Ventas'];
+  const departments: DepartmentName[] = ['Tecnología', 'Recursos Humanos', 'Finanzas', 'Operaciones', 'Ventas'];
   const statuses: EmployeeStatus[] = ['active', 'inactive', 'on_leave'];
   const statusLabels: Record<EmployeeStatus, string> = {
     active: 'Activo',
@@ -191,7 +191,7 @@ function EmployeesPage() {
             <FormField label="Departamento *">
               <select
                 value={newDepartment}
-                onChange={(e) => setNewDepartment(e.target.value as Department)}
+                onChange={(e) => setNewDepartment(e.target.value as DepartmentName)}
                 style={formFieldStyle}
               >
                 {departments.map(dept => (
@@ -307,7 +307,7 @@ function EmployeesPage() {
         <FormField label="Departamento" style={{ minWidth: '180px' }}>
           <select
             value={selectedDepartment}
-            onChange={(e) => setSelectedDepartment(e.target.value as Department | '')}
+            onChange={(e) => setSelectedDepartment(e.target.value as DepartmentName | '')}
             style={{
               padding: '8px 12px', border: '1px solid #cbd5e1',
               borderRadius: '6px', fontSize: '14px', color: '#1e293b', background: 'white'

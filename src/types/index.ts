@@ -2,7 +2,7 @@
 
 // --- Tipos base del dominio ---
 
-export type Department =
+export type DepartmentName =
   | "Tecnología"
   | "Recursos Humanos"
   | "Finanzas"
@@ -20,7 +20,7 @@ export interface Employee {
   name: string;
   email: string;
   position: string;
-  department: Department;
+  department: DepartmentName;
   salary: number;
   hireDate: string; // ISO 8601: "2024-01-15"
   status: EmployeeStatus;
